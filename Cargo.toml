@@ -1,0 +1,6 @@
+[package]
+name = "totp"
+version = "0.1.0-pre"
+authors = ["Tomoki Aonuma <uasi@uasi.jp>"]
+
+[dependencies]
