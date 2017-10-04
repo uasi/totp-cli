@@ -1,6 +1,6 @@
 [root]
 name = "totp-cli"
-version = "0.1.0-pre"
+version = "0.1.0"
 dependencies = [
  "base32 0.3.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "hmac 0.4.2 (registry+https://github.com/rust-lang/crates.io-index)",

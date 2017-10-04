@@ -1,6 +1,6 @@
 [package]
 name = "totp-cli"
-version = "0.1.0-pre"
+version = "0.1.0"
 authors = ["Tomoki Aonuma <uasi@uasi.jp>"]
 
 [dependencies]
