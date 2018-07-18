@@ -34,7 +34,7 @@ fn main() {
         Some(value) => {
             match value.as_str().and_then(config::parse_secret) {
                 Some(secret) => {
-                    println!("{}", totp::totp(&secret, &totp::default_counter(), 6));
+                    println!("{:06}", totp::totp(&secret, &totp::default_counter(), 6));
                 }
                 None => {
                     eprintln!("error: secret for item '{}' is invalid", item_name);
