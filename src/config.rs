@@ -14,14 +14,19 @@ pub fn load_config() -> io::Result<TomlValue> {
     let mut content = String::new();
     file.read_to_string(&mut content)?;
 
-    content.parse::<TomlValue>()
+    content
+        .parse::<TomlValue>()
         .map_err(|e| io::Error::new(io::ErrorKind::InvalidData, e.description()))
 }
 
 pub fn parse_secret(secret: &str) -> Option<Vec<u8>> {
     let re = regex::Regex::new(r"(?i)\bsecret=([0-9a-z]+)").expect("regex must compile");
 
-    if let Some(s) = re.captures(secret).and_then(|c| c.get(1)).map(|m| m.as_str()) {
+    if let Some(s) = re
+        .captures(secret)
+        .and_then(|c| c.get(1))
+        .map(|m| m.as_str())
+    {
         decode_secret(s)
     } else {
         decode_secret(secret)

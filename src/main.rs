@@ -21,9 +21,7 @@ fn main() {
     let item_name = &args[1];
 
     let config = match config::load_config() {
-        Ok(config) => {
-            config
-        }
+        Ok(config) => config,
         Err(e) => {
             eprintln!("error: could not load config ({})", e.description());
             exit(1)
@@ -31,17 +29,15 @@ fn main() {
     };
 
     match config.get(item_name) {
-        Some(value) => {
-            match value.as_str().and_then(config::parse_secret) {
-                Some(secret) => {
-                    println!("{:06}", totp::totp(&secret, &totp::default_counter(), 6));
-                }
-                None => {
-                    eprintln!("error: secret for item '{}' is invalid", item_name);
-                    exit(1);
-                }
+        Some(value) => match value.as_str().and_then(config::parse_secret) {
+            Some(secret) => {
+                println!("{:06}", totp::totp(&secret, &totp::default_counter(), 6));
             }
-        }
+            None => {
+                eprintln!("error: secret for item '{}' is invalid", item_name);
+                exit(1);
+            }
+        },
         None => {
             eprintln!("error: item '{}' not found", item_name);
             exit(1);
