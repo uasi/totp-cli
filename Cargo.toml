@@ -2,6 +2,7 @@
 name = "totp-cli"
 version = "0.1.0"
 authors = ["Tomoki Aonuma <uasi@uasi.jp>"]
+edition = "2018"
 
 [dependencies]
 base32 = "0.3.0"

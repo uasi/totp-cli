@@ -1,9 +1,3 @@
-extern crate base32;
-extern crate hmac;
-extern crate regex;
-extern crate sha1;
-extern crate toml;
-
 mod config;
 mod totp;
 
