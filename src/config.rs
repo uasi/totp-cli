@@ -1,11 +1,10 @@
-use base32;
-use regex;
 use std::env;
 use std::fs::File;
 use std::io::{self, Read};
 use toml::Value as TomlValue;
 
 pub fn load_config() -> io::Result<TomlValue> {
+    #[allow(deprecated)]
     let mut path = env::home_dir().expect("home dir must exist");
     path.push(".totp.toml");
 
