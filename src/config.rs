@@ -1,7 +1,6 @@
 use base32;
 use regex;
 use std::env;
-use std::error::Error;
 use std::fs::File;
 use std::io::{self, Read};
 use toml::Value as TomlValue;
@@ -16,7 +15,7 @@ pub fn load_config() -> io::Result<TomlValue> {
 
     content
         .parse::<TomlValue>()
-        .map_err(|e| io::Error::new(io::ErrorKind::InvalidData, e.description()))
+        .map_err(|e| io::Error::new(io::ErrorKind::InvalidData, e.to_string()))
 }
 
 pub fn parse_secret(secret: &str) -> Option<Vec<u8>> {

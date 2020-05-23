@@ -1,7 +1,6 @@
 mod config;
 mod totp;
 
-use std::error::Error;
 use std::process::exit;
 
 fn main() {
@@ -17,7 +16,7 @@ fn main() {
     let config = match config::load_config() {
         Ok(config) => config,
         Err(e) => {
-            eprintln!("error: could not load config ({})", e.description());
+            eprintln!("error: could not load config ({})", e);
             exit(1)
         }
     };
