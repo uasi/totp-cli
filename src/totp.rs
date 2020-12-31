@@ -1,4 +1,4 @@
-use hmac::{Hmac, Mac};
+use hmac::{Hmac, Mac, NewMac};
 use sha1::Sha1;
 use std::time::{SystemTime, UNIX_EPOCH};
 
@@ -23,8 +23,8 @@ pub fn default_counter() -> Vec<u8> {
 pub fn totp(key: &[u8], counter: &[u8], digits: u32) -> u32 {
     let mut mac =
         Hmac::<Sha1>::new_varkey(key).expect("Hmac::<Sha1> must be able to take key of any size");
-    mac.input(counter);
-    let code = mac.result().code();
+    mac.update(counter);
+    let code = mac.finalize().into_bytes();
 
     truncate(&code) % 10u32.pow(digits)
 }
